@@ -1,0 +1,13 @@
+---
+import Layout from "./components/Layout.astro";
+import CounterComp from "./partials/counter.astro";
+---
+<Layout>
+    <h3 hx-swap="afterbegin swap:1s" hx-select="table" hx-target="#res" hx-trigger="onCount from:body" hx-get="/partials/search">Hello world</h3>
+    <CounterComp/>
+    <div id="res" class="content">
+        <div>First child</div>
+        <div>Second child</div>
+    </div>
+    
+</Layout>

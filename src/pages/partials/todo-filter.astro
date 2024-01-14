@@ -1,0 +1,7 @@
+---
+import TodoList from '../components/todo-list.astro';
+import {getTodos} from '../components/todos';
+const query=Astro.url.searchParams.get('query') as any;
+const todos = getTodos(query);
+---
+<TodoList todos={todos}/>

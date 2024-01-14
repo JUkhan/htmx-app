@@ -1,0 +1,35 @@
+---
+import type { Todo } from "./todos";
+
+const todo: Todo = Astro.props.todo;
+---
+
+<div id={"todo" + todo.id}>
+  <hr />
+  <div class="todo-item flex gap-3 p-2 bg-slate-600">
+    <input
+      type="checkbox"
+      class="scale-150"
+      checked={todo.completed}
+      hx-get={"/partials/toggle/"+todo.id}
+      hx-target={"#todo" + todo.id}
+      hx-swap="outerHTML"
+      name="status"
+    />
+    <span 
+    hx-get={'/partials/edit/'+todo.id} 
+    hx-target={'#todo'+todo.id}
+    hx-trigger="dblclick"
+    hx-swap="outerHTML"
+    class="w-[500px] text-white-900">
+    {todo.title}
+  </span>
+    <button
+      hx-get={"/partials/remove-todo/"+todo.id}
+      hx-target={"#todo" + todo.id}
+      hx-swap="delete"
+      class="hover:text-red-500"
+      title="delete">X</button
+    >
+  </div>
+</div>

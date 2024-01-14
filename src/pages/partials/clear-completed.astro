@@ -1,0 +1,6 @@
+---
+import TodoList from '../components/todo-list.astro';
+import {clearCompleted} from '../components/todos';
+const todos = clearCompleted();
+---
+<TodoList todos={todos}/>

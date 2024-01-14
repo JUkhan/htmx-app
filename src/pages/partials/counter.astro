@@ -4,9 +4,11 @@ let count = 0;
 try {
   const data = await Astro.request.formData();
   count = +(data.get("count") || "0") + 1;
+  Astro.response.headers.set('HX-Trigger-After-Swap','onCount');
 } catch {
 }
 ---
+<title>count {count}</title>
 {count > 0 && (<div id="anotherCounter" hx-swap-oob="true">
   {count}
 </div>)}

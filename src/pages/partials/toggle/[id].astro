@@ -1,0 +1,12 @@
+---
+export const partial = true;
+import { toggleStatus } from "../../components/todos";
+import TodoItem from "../../components/todo-item.astro";
+import ItemLeft from "../../components/item-left.astro";
+
+const id = +Astro.params.id;
+
+const todo = toggleStatus(id);
+---
+<ItemLeft/>
+<TodoItem todo={todo} />

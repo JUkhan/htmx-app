@@ -1,0 +1,26 @@
+---
+export const partial = true;
+import { getTodo } from "../../components/todos";
+
+
+const id = +Astro.params.id;
+
+const todo = getTodo(id)!;
+---
+<div id={"todo" + todo.id}>
+    <hr />
+    <form 
+    hx-post="/partials/edit-todo/"
+        hx-target={"#todo" + todo.id}
+        hx-swap="outerHTML"
+    class="todo-item flex gap-3 p-2 bg-slate-600"
+    >
+      <input  type="hidden" name="id" value={todo.id}>
+      <input
+        name="title"
+        type="text"
+        value={todo.title}
+        class="text-black px-3 w-full py-2 rounded-sm"
+      >
+      
+  </div>

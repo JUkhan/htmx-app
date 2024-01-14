@@ -1,0 +1,12 @@
+---
+import TodoItem from "../components/todo-item.astro";
+import { updateTitle } from "../components/todos";
+
+export const partial = true;
+const data= await Astro.request.formData();
+const title = data.get('title').toString();
+const id =+data.get('id').toString()
+const todo = updateTitle(id, title);
+---
+
+<TodoItem todo={todo}/>

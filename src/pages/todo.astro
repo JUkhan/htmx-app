@@ -1,0 +1,16 @@
+---
+import Layout from "./components/Layout.astro";
+import CreateTodo from './components/create-todo.astro'
+import TodoList from "./components/todo-list.astro";
+import TodoNav from "./components/todo-nav.astro";
+import { getTodos } from "./components/todos";
+const todos = getTodos('all');
+
+---
+<Layout>
+   <div class="w-1/2 p-1 bg-slate-500 rounded-sm">
+    <CreateTodo/>
+    <TodoList todos={todos}/>
+    <TodoNav/>
+   </div>
+</Layout>

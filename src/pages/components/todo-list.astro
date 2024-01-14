@@ -1,0 +1,9 @@
+---
+import TodoItem from "./todo-item.astro";
+import type { Todo } from "./todos";
+const todos:Todo[]=Astro.props.todos;
+---
+
+<div id="todo-list" class="todo-list">
+    {todos.map(todo=><TodoItem todo={todo}/>)}
+</div> 

@@ -1,0 +1,12 @@
+---
+
+
+---
+<form hx-post="/partials/create-todo" hx-target=".todo-list" hx-swap="afterbegin" _="on htmx:afterOnLoad set #name.value to ''">
+    <input 
+        id="name"
+        name="title"
+        placeholder='What needs to be done?'
+        class="text-black px-3 w-full py-2 rounded-sm"
+        type="text">
+</form>

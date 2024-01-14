@@ -1,0 +1,13 @@
+---
+export const partial=true;
+import ItemLeft from "../components/item-left.astro";
+import TodoItem from "../components/todo-item.astro";
+import { addTodo } from "../components/todos";
+
+const data= await Astro.request.formData();
+const title = data.get('title').toString();
+const todo = addTodo(title);
+
+---
+<ItemLeft/>
+<TodoItem todo={todo} />

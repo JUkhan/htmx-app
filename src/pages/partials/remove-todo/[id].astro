@@ -1,0 +1,10 @@
+---
+export const partial = true;
+import ItemLeft from "../../components/item-left.astro";
+import { removeTodo } from "../../components/todos";
+
+const id = +Astro.params.id;
+
+removeTodo(id);
+---
+<ItemLeft/>
