@@ -6,8 +6,8 @@ const itemLeft = todoLeft();
     <div class="pl-2 mt-2" id="itemLeft">
       {itemLeft} item(s) left
     </div>
-    <div class="flex-auto gap-3 p-2 text-center" hx-boost>
-        <button hx-target="#todo-list" hx-get="/partials/todo-filter?query=all">All</button>
+    <div id="filter" class="flex-auto gap-3 p-2 text-center" >
+        <button class="text-red-400" hx-target="#todo-list" hx-get="/partials/todo-filter?query=all">All</button>
         <button hx-target="#todo-list" hx-get="/partials/todo-filter?query=active">Active</button>
         <button hx-target="#todo-list" hx-get="/partials/todo-filter?query=completed">Completed</button>
     </div>

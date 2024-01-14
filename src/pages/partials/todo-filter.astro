@@ -3,5 +3,13 @@ import TodoList from '../components/todo-list.astro';
 import {getTodos} from '../components/todos';
 const query=Astro.url.searchParams.get('query') as any;
 const todos = getTodos(query);
+function active(str:string) {
+    return query ===str?'text-red-400':''
+}
 ---
 <TodoList todos={todos}/>
+<div id="filter" class="flex-auto gap-3 p-2 text-center" hx-swap-oob="true" >
+    <button class={active('all')} hx-target="#todo-list" hx-get="/partials/todo-filter?query=all">All</button>
+    <button class={active('active')} hx-target="#todo-list" hx-get="/partials/todo-filter?query=active">Active</button>
+    <button class={active('completed')} hx-target="#todo-list" hx-get="/partials/todo-filter?query=completed">Completed</button>
+</div>
