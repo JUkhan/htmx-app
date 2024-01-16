@@ -1,0 +1,21 @@
+---
+import '../../styles/trello.css'
+---
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Trello Clone</title>
+		<script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+        <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>                            
+	</head>
+	<body>
+        <div class="app">
+            <div class="header">Trello Clone</div>
+             <slot />
+        </div>
+       
+	</body>
+</html>

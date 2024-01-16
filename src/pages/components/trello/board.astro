@@ -1,0 +1,24 @@
+---
+import {Image} from 'astro:assets';
+import Card from './card.astro';
+import lists from '../../../data/list';
+import ToggleAddCard from './toggle-add-card.astro';
+import NewList from './new-list.astro';
+import AddCard from './add-card.astro';
+---
+{lists.map(list=>(
+    <div class="list" draggable="true">
+        <div class="list-title">{list.name}</div>
+        <div class="lists-cards sortable" id={`list-${list.id}`}>
+            {list.cards.map(card=>(
+                <Card list={list} card={card}/>
+            ))}
+        </div>
+        <ToggleAddCard list={list}/>
+        <AddCard list={list}/>
+    </div>
+))}
+<div class="add-list">
+    <NewList/>
+</div>
+

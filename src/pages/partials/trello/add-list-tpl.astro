@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+---
+
+<div id="add-list" class="add-list-editor">
+  <form hx-post="/partials/trello/add-list" , hx-target="#board">
+    <div class="list-title-edit">
+      <input
+        type="text"
+        class="list-title-textarea w-full mr-2"
+        maxlength="30"
+        name="name"
+        placeholder="Enter list title..."
+        autofocus="true"
+      />
+    </div>
+    <div class="edit-buttons">
+      <button
+        class="edit-button"
+        type="submit"
+        tabindex="0"
+        style="background-color: rgb(90, 172, 68);">Add List</button
+      >
+      <button
+        class="edit-button-cancel"
+        type="button"
+        tabindex="0"
+        hx-get="/partials/trello/cancel-list"
+        hx-target="#add-list"
+        hx-swap="outerHTML"
+      >
+      <Image width="22" height="22" src="/close.svg" alt="" />
+      </button>
+    </div>
+  </form>
+</div>

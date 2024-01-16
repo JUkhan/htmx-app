@@ -1,0 +1,21 @@
+---
+import lists from '../../../data/list';
+import Board from '../../components/trello/board.astro' 
+const data = await Astro.request.formData();
+const from=data.get('from')?.toString().replace('list-','')!;
+const to=data.get('to')?.toString().replace('list-','')!;
+
+const movedCard=data.get('movedCard')?.toString().replace('card-','');
+
+const fromList = lists.find(it=>it.id.toString()===from);
+const toList = lists.find(it=>it.id.toString()===to);
+
+const card=fromList?.cards.find(it=>it.id.toString()===movedCard);
+if(fromList && card){
+    fromList.cards=fromList.cards.filter(it=>it.id!==card?.id)
+    card.list=+to;
+    toList?.cards.push(card)
+}
+
+---
+<Board/>

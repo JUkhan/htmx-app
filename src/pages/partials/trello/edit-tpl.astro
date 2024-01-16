@@ -1,0 +1,64 @@
+---
+import lists from "../../../data/list";
+const listId = Astro.url.searchParams.get("listId");
+const cardId = Astro.url.searchParams.get("cardId");
+const card = lists
+  .find((it) => it.id.toString() === listId)
+  ?.cards.find((it) => it.id.toString() === cardId)!;
+console.log("listId", listId, "cardId", cardId, card);
+---
+
+<div class="edit-card" id="edit-card" draggable="false">
+  <form
+    hx-post="/partials/trello/edit"
+    hx-target="#edit-card"
+    hx-swap="outerHTML"
+  >
+    <input type="hidden" name="listId" value={listId} />
+    <input type="hidden" name="cardId" value={cardId} />
+    <textarea
+      class="edit-card-textarea"
+      name="label"
+      rows="3"
+      maxlength="300"
+      autofocus="true"
+    >{card.label}</textarea>
+    <div class="edit-buttons">
+      <button
+        class="edit-button"
+        type="submit"
+        tabindex="0"
+        style="background-color: rgb(90, 172, 68);"
+        _="on htmx:afterOnLoad remove #edit-card">Save</button
+      >
+      <button
+        class="edit-button"
+        type="button"
+        tabindex="0"
+        style="background-color: rgb(234, 37, 37);"
+        hx-delete={`/partials/trello/delete/?listId=${listId}&cardId=${cardId}`}
+        _="on htmx:afterOnLoad remove #edit-card">Delete</button
+      >
+      <div
+        tabindex="0"
+        hx-get={`/partials/trello/cancel-edit/?listId=${listId}&cardId=${cardId}`}
+        hx-target="#edit-card"
+        hx-swap="outerHTML"
+        class="edit-button-cancel"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="currentColor"
+          class="bi bi-x"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+  </form>
+</div>

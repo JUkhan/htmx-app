@@ -1,0 +1,32 @@
+---
+import TrelloLayout from './components/TrelloLayout.astro'
+import Board from './components/trello/board.astro'
+---
+<TrelloLayout>
+    
+    <form
+     hx-post="/partials/trello/move"
+     hx-trigger="cardmoved"
+     hx-target="#board"
+     >
+        <input id="fromList" type="hidden" name="from">
+        <input id="toList" type="hidden" name="to">
+        <input id="movedCard" type="hidden" name="movedCard">
+        <div id="board" class="board sortable" _="on end put event.from.id into #fromList.value put event.to.id into #toList.value put event.item.id into #movedCard.value then send cardmoved">
+            <Board/>
+        </div>
+    </form>
+</TrelloLayout>
+
+<script>
+    window.onload=function(content) {
+        var sortables = document.querySelectorAll(".sortable");
+          for (var i = 0; i < sortables.length; i++) {
+            var sortable = sortables[i];
+            new Sortable(sortable, {
+                animation: 150,
+                group: 'shared',
+            });
+          }
+    }
+</script>

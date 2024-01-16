@@ -1,0 +1,9 @@
+---
+import Card  from '../../components/trello/card.astro';
+import lists from "../../../data/list";
+const listId = Astro.url.searchParams.get("listId");
+const cardId = Astro.url.searchParams.get("cardId");
+const list=lists.find(el=>el.id.toString()===listId)
+const card = list?.cards.find(el=>el.id.toString()===cardId)
+---
+<Card list={list} card={card} />

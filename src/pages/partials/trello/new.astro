@@ -1,0 +1,15 @@
+---
+import Card  from '../../components/trello/card.astro';
+import lists from '../../../data/list';
+const data = await Astro.request.formData();
+const listId = Astro.url.searchParams.get('listId');
+const label = data.get('label-'+listId) as any;
+const list = lists.find(el=>el.id.toString()===listId);
+const card={
+    id:Number(Date.now()),
+    label,
+    list:+(listId as any)
+}
+list?.cards.push(card);
+---
+<Card list={list} card={card} />
