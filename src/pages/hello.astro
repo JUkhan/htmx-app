@@ -1,13 +1,95 @@
 ---
 import Layout from "./components/Layout.astro";
-import CounterComp from "./partials/counter.astro";
 ---
+
 <Layout>
-    <h3 hx-swap="afterbegin swap:1s" hx-select="table" hx-target="#res" hx-trigger="onCount from:body" hx-get="/partials/search">Hello world</h3>
-    <CounterComp/>
-    <div id="res" class="content">
-        <div>First child</div>
-        <div>Second child</div>
+  <div class="p-2">
+    <div class="mb-2">
+      <button
+        _="on click toggle .hidden on #xs
+      if my innerHTML=='Show'
+        set my innerHTML to 'Hide'
+      otherwise
+        set my innerHTML to 'Show'"
+        class="ml-2 bg-orange-400 px-3 py-2 rounded-sm">Show</button
+      >
+      <div id="xs" class="rounded-md hidden bg-slate-400 h-48 w-48"></div>
     </div>
-    
+    <div class="mb-2">
+      <button
+        id="b1"
+        _="on click toggle .border-y-8 on #b2"
+        class="ml-2 bg-orange-400 px-3 py-2 rounded-sm"
+        >Toggle Next Border</button
+      >
+      <button
+        id="b2"
+        _="on click toggle .bg-orange-400 unless I match .border-y-8"
+        class="ml-2 bg-orange-400 px-3 py-2 rounded-sm"
+        >Toggle My Background</button
+      >
+    </div>
+    <div>
+        <button
+        _="on click
+            get the (value of the next <input/>) as an Int
+            increment it
+            put it into the next <span/>
+          "
+        class="ml-2 bg-orange-400 px-3 py-2 rounded-sm">Add 1 To:</button>
+        <input
+        type="text"
+        class="p-2 text-slate-900"
+        ><span>--</span>
+    </div>
+    <div class="p-2">
+      <input
+        id="search"
+        type="text"
+        placeholder="search..."
+        class="p-2 text-slate-900"
+        _="on keyup 
+   if event's key=='Escape'
+      set my value to ''
+      trigger keyup
+   else 
+      show <li/> in <ul/> when its textContent contains my value"
+      /><button
+        _="on click set #search.value to '' then trigger keyup on #search"
+        class="ml-2 bg-orange-400 px-3 py-2 rounded-sm">Clear</button
+      >
+      <ul _="init transition my opacity to 100% over 3 seconds" class="bg-slate-500 p-2 mt-2" style="opacity: 0;">
+        <li>one</li>
+        <li>one</li>
+        <li>two</li>
+        <li>three</li>
+      </ul>
+    </div>
+    <div>
+        <p class="text-md bg-zinc-600 p-2 rounded-md">
+           <b>Waiting For Event</b> 
+           <button _="on click put 'started' into next <span/> wait for a continue or 3s put 'finished' into next <span/> wait 2s put '' into next <span/>" class="bg-red-400 px-4 py-1 rounded-md">Start</button>
+           <button _="on click send continue to the previous <button/>" class="bg-red-400 px-4 py-1 rounded-md">Continue</button>
+           <span></span>
+        </p>
+
+    </div>
+    <div class="mt-2">
+        <p class="text-md bg-zinc-600 p-2 rounded-md">
+            <b>An Event Driven Loop</b> 
+            <button _="on click repeat until event stop
+            add .bg-red-400 then settle
+            remove .bg-red-400 then settle" class="px-4 py-1 rounded-md">Click me to pulse</button>
+            <button _="on click send stop to the previous <button/>" class="bg-red-400 px-4 py-1 rounded-md">Cancel</button>
+            <span></span>
+         </p>
+    </div>
+    <div>
+        <div contenteditable="true"
+   _="on mutation of anything increment :mutationCount then put it into the next <output/>">
+Hello World
+</div>
+<output>--</output>
+    </div>
+  </div>
 </Layout>
