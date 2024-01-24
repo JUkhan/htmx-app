@@ -30,17 +30,15 @@ import Layout from "./components/Layout.astro";
       >
     </div>
     <div>
-        <button
+      <button
         _="on click
             get the (value of the next <input/>) as an Int
             increment it
             put it into the next <span/>
           "
-        class="ml-2 bg-orange-400 px-3 py-2 rounded-sm">Add 1 To:</button>
-        <input
-        type="text"
-        class="p-2 text-slate-900"
-        ><span>--</span>
+        class="ml-2 bg-orange-400 px-3 py-2 rounded-sm">Add 1 To:</button
+      >
+      <input type="text" class="p-2 text-slate-900" /><span>--</span>
     </div>
     <div class="p-2">
       <input
@@ -58,7 +56,11 @@ import Layout from "./components/Layout.astro";
         _="on click set #search.value to '' then trigger keyup on #search"
         class="ml-2 bg-orange-400 px-3 py-2 rounded-sm">Clear</button
       >
-      <ul _="init transition my opacity to 100% over 3 seconds" class="bg-slate-500 p-2 mt-2" style="opacity: 0;">
+      <ul
+        _="init transition my opacity to 100% over 3 seconds"
+        class="bg-slate-500 p-2 mt-2"
+        style="opacity: 0;"
+      >
         <li>one</li>
         <li>one</li>
         <li>two</li>
@@ -66,30 +68,51 @@ import Layout from "./components/Layout.astro";
       </ul>
     </div>
     <div>
-        <p class="text-md bg-zinc-600 p-2 rounded-md">
-           <b>Waiting For Event</b> 
-           <button _="on click put 'started' into next <span/> wait for a continue or 3s put 'finished' into next <span/> wait 2s put '' into next <span/>" class="bg-red-400 px-4 py-1 rounded-md">Start</button>
-           <button _="on click send continue to the previous <button/>" class="bg-red-400 px-4 py-1 rounded-md">Continue</button>
-           <span></span>
-        </p>
-
+      <p class="text-md bg-zinc-600 p-2 rounded-md">
+        <b>Waiting For Event</b>
+        <button
+          _="on click put 'started' into next <span/>
+           wait for a continue or 3s
+          if the result's type is 'continue'
+            put 'Finished...' into the next <span/>
+          otherwise
+            put 'Timed Out...' into the next <span/>
+          end
+            wait 2s put '' into next <span/>"
+          class="bg-red-400 px-4 py-1 rounded-md">Start</button
+        >
+        <button
+          _="on click send continue to the previous <button/>"
+          class="bg-red-400 px-4 py-1 rounded-md">Continue</button
+        >
+        <span></span>
+      </p>
     </div>
     <div class="mt-2">
-        <p class="text-md bg-zinc-600 p-2 rounded-md">
-            <b>An Event Driven Loop</b> 
-            <button _="on click repeat until event stop
+      <p class="text-md bg-zinc-600 p-2 rounded-md">
+        <b>An Event Driven Loop</b>
+        <button
+          style="transition: all 1500ms ease-in"
+          _="on click repeat until event stop
             add .bg-red-400 then settle
-            remove .bg-red-400 then settle" class="px-4 py-1 rounded-md">Click me to pulse</button>
-            <button _="on click send stop to the previous <button/>" class="bg-red-400 px-4 py-1 rounded-md">Cancel</button>
-            <span></span>
-         </p>
+            remove .bg-red-400 then settle"
+          class="px-4 py-1 rounded-md">Click me to pulse</button
+        >
+        <button
+          _="on click send stop to the previous <button/>"
+          class="bg-red-400 px-4 py-1 rounded-md">Cancel</button
+        >
+        <span></span>
+      </p>
     </div>
     <div>
-        <div contenteditable="true"
-   _="on mutation of anything increment :mutationCount then put it into the next <output/>">
-Hello World
-</div>
-<output>--</output>
+      <div
+        contenteditable="true"
+        _="on mutation of anything increment :mutationCount then put it into the next <output/>"
+      >
+        Hello World
+      </div>
+      <output>--</output>
     </div>
   </div>
 </Layout>
